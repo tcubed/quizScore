@@ -1,24 +1,43 @@
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Score Enter</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  
+  
+  <script>
+function submitScores() {
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                //document.getElementById("txtHint").innerHTML = this.responseText;
+                console.log(this.responseText);
+            }
+        };
+        xmlhttp.open("POST", "processForm.php", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        
+        var args="";
+        for (var ii=0;ii<3;ii++){
+            var nm=document.getElementById("name"+(ii+1)).value;
+            var score=document.getElementById("score"+(ii+1)).value;
+            args+="name"+(ii+1)+"="+nm+"&";
+            args+="score"+(ii+1)+"="+score+"&";
+            if(ii<2){args+='&';}
+        }
+        //console.log('args:'+args);
+        xmlhttp.send(args);
+        //xmlhttp.send();
+}
+</script>
+  
+  
 </head>
 <body>
 
@@ -28,28 +47,57 @@
   <p>Resize this responsive page to see the effect!</p> 
 </div>
   -->
-  
-  
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h1><?php echo "Team 1";?></h1>
-      <span style="font-size:100px">
-        <?php echo "100";?>
-      </span>
-    </div>
-    <div class="col-sm-4">
-      <h3>Team 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Team 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-  </div>
-</div>
 
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card bg-danger">
+              <div class="card-body text-center">
+
+                  <h3>Team name</h3>
+                  <input type="text" id="name1" onchange="submitScores()" value="Team 1">
+                  <h3>Score</h3>
+                  <input type="text" id="score1" onchange="submitScores()" value="20">
+
+
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body text-center">
+                        <h3>Team name</h3>
+                  <input type="text" id="name2" onchange="submitScores()" value="Team 2">
+                  <h3>Score</h3>
+                  <input type="text" id="score2" onchange="submitScores()" value="20">
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card bg-primary">
+              <div class="card-body text-center" onchange="submitScores()">
+                        <h3>Team name</h3>
+                  <input type="text" id="name3" onchange="submitScores()" value="Team 3">
+                  <h3>Score</h3>
+                  <input type="text" id="score3" onchange="submitScores()" value="20">
+              </div>
+            </div> 
+        </div>
+    </div>
+</div>
+  
+  
+  
 </body>
 </html>
+
+
+<?php
+$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+$txt = "Mickey Mouse\n";
+fwrite($myfile, $txt);
+$txt = "Minnie Mouse\n";
+fwrite($myfile, $txt);
+fclose($myfile);
+?>
+
