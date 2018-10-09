@@ -25,13 +25,35 @@ header("Refresh:5");
 <body>
 
 <?php
-$file = fopen("scores.txt","r");
+//function file_build_path(...$segments) {
+//    return join(DIRECTORY_SEPARATOR, $segments);
+//}
+//var_dump($_GET);
+$district=$_GET["d"];
+$division=$_GET["v"];
+//$fn=file_build_path("data",$district."_".$division.".txt");
+$fn="data/".$district."_".$division.".txt";
+
+$file = fopen($fn,"r");
 $team1=fgetcsv($file);
 $team2=fgetcsv($file);
 $team3=fgetcsv($file);
+$q=fgetcsv($file);
 fclose($file);
 ?>
 
+<div class="card-deck">
+    <div class="card">
+        <div class="card-body text-center">
+            <h1><?php echo $district;?> - <?php echo $division;?></h1>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body text-center">
+            <h1>Question: <?php echo $q[0];?></h1>
+        </div>
+    </div>
+</div>
     
     
 <div class="card-deck">

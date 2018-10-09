@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Quiz Scores</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+        <style>
+        h1{font-size:50px;}      
+        </style>
+    
+        
+    </head>
+    <body>
+
+        <div class="container">
+            <h1>Quiz Scores</h1>
+            <div class="row">
+                
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="form-group">
+                          <label for="usr">District</label>
+                          <input type="text" class="form-control" id="usr" value="Western Great Lakes (WGL)" readonly>
+                        </div>
+                        
+                        <a href="scores.php?d=WGL&v=A" class="btn btn-info" role="button">A Quiz Scores</a>
+                        <a href="scores.php?d=WGL&v=B" class="btn btn-info" role="button">B Quiz Scores</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </body>
+</html>

@@ -23,13 +23,19 @@ function submitScores() {
         xmlhttp.open("POST", "processForm.php", true);
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         
-        var args="";
+        var division=document.getElementById("division").value;
+        var question=document.getElementById("q").value;
+        
+        var args="d=WGL";
+        args+="&v="+division;
+        args+="&q="+question;
+        
         for (var ii=0;ii<3;ii++){
             var nm=document.getElementById("name"+(ii+1)).value;
             var score=document.getElementById("score"+(ii+1)).value;
-            args+="name"+(ii+1)+"="+nm+"&";
-            args+="score"+(ii+1)+"="+score+"&";
-            if(ii<2){args+='&';}
+            args+="&name"+(ii+1)+"="+nm;
+            args+="&score"+(ii+1)+"="+score;
+            //if(ii<2){args+='&';}
         }
         //console.log('args:'+args);
         xmlhttp.send(args);
@@ -50,7 +56,28 @@ function submitScores() {
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
+            <div class="card">
+              <div class="card-body text-center">
+                  <div class="form-group">
+                    <label for="dis">District</label>
+                    <input type="text" class="form-control" id="dis" value="Western Great Lakes (WGL)" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="division">Division</label>
+                    <input type="text" class="form-control" id="division" onchange="submitScores()" value="A">
+                  </div>
+                 <div class="form-group">
+                    <label for="q">Question</label>
+                    <input type="text" class="form-control" id="q" onchange="submitScores()" value="1">
+                  </div>
+
+              </div>
+            </div>
+        </div>
+        
+        
+        <div class="col-sm-3">
             <div class="card bg-danger">
               <div class="card-body text-center">
 
@@ -63,7 +90,7 @@ function submitScores() {
               </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="card">
               <div class="card-body text-center">
                         <h3>Team name</h3>
@@ -73,7 +100,7 @@ function submitScores() {
               </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="card bg-primary">
               <div class="card-body text-center" onchange="submitScores()">
                         <h3>Team name</h3>
