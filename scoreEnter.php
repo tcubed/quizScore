@@ -1,3 +1,21 @@
+<?php
+if(array_key_exists("d",$_GET)==0 || array_key_exists("v",$_GET)==0){
+    die("something is not right...");
+}
+$district=$_GET["d"];
+$division=$_GET["v"];
+//$fn=file_build_path("data",$district."_".$division.".txt");
+$fn="data/".$district."_".$division.".txt";
+
+$file = fopen($fn,"r");
+$team1=fgetcsv($file);
+$team2=fgetcsv($file);
+$team3=fgetcsv($file);
+$q=fgetcsv($file);
+fclose($file);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,15 +79,15 @@ function submitScores() {
               <div class="card-body text-center">
                   <div class="form-group">
                     <label for="dis">District</label>
-                    <input type="text" class="form-control" id="dis" value="Western Great Lakes (WGL)" readonly>
+                    <input type="text" class="form-control" id="dis" value="<?php echo $district;?>" readonly>
                   </div>
                   <div class="form-group">
                     <label for="division">Division</label>
-                    <input type="text" class="form-control" id="division" onchange="submitScores()" value="A">
+                    <input type="text" class="form-control" id="division" value="<?php echo $division;?>" readonly>
                   </div>
                  <div class="form-group">
                     <label for="q">Question</label>
-                    <input type="text" class="form-control" id="q" onchange="submitScores()" value="1">
+                    <input type="text" class="form-control" id="q" onchange="submitScores()" value="<?php echo $q[0];?>">
                   </div>
 
               </div>
@@ -82,9 +100,9 @@ function submitScores() {
               <div class="card-body text-center">
 
                   <h3>Team name</h3>
-                  <input type="text" id="name1" onchange="submitScores()" value="Team 1">
+                  <input type="text" id="name1" onchange="submitScores()" value="<?php echo $team1[0];?>">
                   <h3>Score</h3>
-                  <input type="text" id="score1" onchange="submitScores()" value="20">
+                  <input type="text" id="score1" onchange="submitScores()" value="<?php echo $team1[1];?>">
 
 
               </div>
@@ -94,9 +112,9 @@ function submitScores() {
             <div class="card">
               <div class="card-body text-center">
                         <h3>Team name</h3>
-                  <input type="text" id="name2" onchange="submitScores()" value="Team 2">
+                  <input type="text" id="name2" onchange="submitScores()" value="<?php echo $team2[0];?>">
                   <h3>Score</h3>
-                  <input type="text" id="score2" onchange="submitScores()" value="20">
+                  <input type="text" id="score2" onchange="submitScores()" value="<?php echo $team2[1];?>">
               </div>
             </div>
         </div>
@@ -104,9 +122,9 @@ function submitScores() {
             <div class="card bg-primary">
               <div class="card-body text-center" onchange="submitScores()">
                         <h3>Team name</h3>
-                  <input type="text" id="name3" onchange="submitScores()" value="Team 3">
+                  <input type="text" id="name3" onchange="submitScores()" value="<?php echo $team3[0];?>">
                   <h3>Score</h3>
-                  <input type="text" id="score3" onchange="submitScores()" value="20">
+                  <input type="text" id="score3" onchange="submitScores()" value="<?php echo $team3[1];?>">
               </div>
             </div> 
         </div>
