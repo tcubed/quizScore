@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 
 /* 
@@ -17,7 +13,9 @@
 
 $district=$_POST["d"];
 $division=$_POST["v"];
+$quiz=$_POST["qz"];
 $q=$_POST["q"];
+$timeout=$_POST["TO"];
 //$fn=file_build_path("data",$district."_".$division.".txt");
 $fn="data/".$district."_".$division.".txt";
 echo $fn;
@@ -39,9 +37,12 @@ fwrite($fp, $s);
 $s = $name3 . "," . $score3 . "\n";
 fwrite($fp, $s);
 
-$s= $q."\n";
+$s= $quiz. "," . $q ."\n";
+fwrite($fp,$s);
+
+$s=$timeout."\n";
 fwrite($fp,$s);
 
 fclose($fp);
-echo "<h1>You data has been saved in a text file!</h1>";
+echo ": updated";
 ?>
