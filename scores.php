@@ -80,7 +80,8 @@ function updateScores(){
     var s=today.getSeconds();
     var m = today.getMinutes();
     var msg=document.getElementById("msg");    
-    msg.innerHTML='| min:'+m+', sec:'+s+' ('+m%3+')';
+    //msg.innerHTML='| min:'+m+', sec:'+s+' ('+m%3+')';
+    //msg.innerHTML='| '+today.getHours()+':'+m;
     if(m%3==0 && s<15){
         showSnackBar()
     }
