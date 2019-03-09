@@ -4,6 +4,9 @@ if(array_key_exists("d",$_GET)==0 || array_key_exists("v",$_GET)==0){
 }
 $district=$_GET["d"];
 $division=$_GET["v"];
+if($division=="A"){$otherDivision="B";}
+else{$otherDivision="A";}
+
 //$fn=file_build_path("data",$district."_".$division.".txt");
 $fn="data/".$district."_".$division.".txt";
 
@@ -32,8 +35,16 @@ fclose($file);
   
   
   <script>
+  var division;
+var otherDivision;
 //var TOstate=false;
-
+function startUp(district0,division0){
+    // kick off the page update functions
+    district=district0;
+    division=division0;
+    if(division=='A'){otherDivision='B';}
+    else {otherDivision='A';}
+}
 function submitScores(team,scoreChange) {
     //console.log('submitScores')
     var xmlhttp = new XMLHttpRequest();
@@ -112,7 +123,7 @@ function toggleButton(){
   
   
 </head>
-<body class="bg-secondary">
+<body class="bg-secondary" onload="startUp(<?php echo '\''.$district.'\',\''.$division.'\''; ?> ) " >
 
     <!--
 <div class="jumbotron text-center">
@@ -123,6 +134,9 @@ function toggleButton(){
 
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
       <a class="navbar-brand" href="#">C&MA Quizzing: <?php echo $district;?> - <?php echo $division;?></a>
+	  <!--
+	  <a class="navbar-brand" href="scoreEnter.php?d=<?php echo $district;?>&v=<?php echo $otherDivision;?>">C&MA Quizzing: <?php echo $district;?> - <?php echo $division;?></a>
+	  -->
   </nav>
   
 <div class="container bg-secondary" style="margin-top:80px">
